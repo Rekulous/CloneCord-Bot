@@ -9,6 +9,7 @@ Original bot and code made by KushTheAppluser / BlackBeard. [GClone](https://git
 Before you get started, you need [Python](https://python.org) 3.7 or later to run this script. Below are some extra things you need to download / install too:
 
 - **[GClone](https://github.com/donwa/gclone)** - Run the shell / batch script if you are on Linux to install, or add the `gclone.exe` file to your system PATH variables if you are on Windows. I think putting the script in the same directory as GClone in Windows will work as well.
+- **[AutoRClone](https://github.com/xyou365/autorclone)** - GClone requires service accounts. To generate and manage them, use AutoRClone. You can then configure GClone using the service accounts.
 - **Pip requirements** - In the folder of this GitHub Repository, run `pip install -r requirements.txt` and wait for the Python requirements are finished installing
 
 ## How to run the bot
