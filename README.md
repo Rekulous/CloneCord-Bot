@@ -31,3 +31,6 @@ First you are going to have to go to the [Discord App Dev Portal](https://discor
 Now, you can continue on depending the steps for what platform you are running this on.
 
 Open up your Terminal or Command Line and then run `python CloneCord.py` or `python3 CloneCord.py`. The output of the Terminal or Command Line should have no errors and show that everything is all ready.
+
+## Repl.it
+You are not able to run this bot on Replit because it cannot install or run GClone in the Shell or Python. Instead, use Heroku or run it on your system.
