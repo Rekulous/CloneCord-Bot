@@ -2,6 +2,7 @@
 import json
 import logging
 import os
+import sys
 import random
 import struct
 import time
@@ -14,16 +15,19 @@ from discord.utils import get
 
 
 # Get config.json
-with open("config.json", "r") as config:
-    data = json.load(config)
-    token = data["token"]
-    prefix = data["prefix"]
+if not os.path.isfile("config.json"):
+    sys.exit("Your Discord bot 'config.json' was not found! Please add it and try again. Make sure you CD into the directory of this Python script before you run it and check config.json is in there as well!")
+else:
+    with open("config.json", "r") as config:
+        data = json.load(config)
+        token = data["token"]
+        prefix = data["prefix"]
 
 
-# Sweet ass logging
+# Sweet ass bot logging
 logger = logging.getLogger("discord")
 logger.setLevel(logging.DEBUG)
-handler = logging.FileHandler(filename="discord.log", encoding="utf-8", mode="w")
+handler = logging.FileHandler(filename="clonecord.log", encoding="utf-8", mode="w")
 handler.setFormatter(logging.Formatter("%(asctime)s:%(levelname)s:%(name)s: %(message)s"))
 logger.addHandler(handler)
 
@@ -36,15 +40,18 @@ bot = commands.Bot(command_prefix='?')
 async def on_ready():
     print('Connected to bot: {}'.format(bot.user.name))
     print('Bot ID: {}'.format(bot.user.id))
-    print("CloneCord is Ready!")
+    print('CloneCord is Ready!')
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="?help to get help! CloneCord V4 BETA"))
-    print("CloneCord Status Ready!")
+    print('CloneCord Status Ready!')
+    print('Discord.py API version: {}'.format(discord.__version__))
     print("==================================================================================================================================================")
+    print("--------------------")
     print("GClone Remotes:")
     print()
     os.system(
         f"gclone listremotes"
     )
+    print("--------------------")
     print("==================================================================[ALL READY!!!]==================================================================")
 
 
@@ -145,7 +152,7 @@ async def help(ctx, command: Optional[str]):
     )
     helpEmbed.add_field(
         name='mkdir',
-        value="Create directories"
+        value="Create directories / folders"
     )
     helpEmbed.add_field(
         name='purge',
