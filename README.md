@@ -3,7 +3,7 @@ A Discord.py bot for Running GClone, an RClone mod that allows multiple Google S
 
 Thanks to KushTheAppluser, TaskyLizard, and Razorback for helping me develop the bot!
 
-Original bot and code made by KushTheAppluser / BlackBeard. [GClone](https://github.com/donwa/gclone) created by Donwa.
+Original bot and code made by KushTheAppluser / BlackBeard. [GClone](https://github.com/donwa/gclone) created by Donwa. [GClone Linux](https://github.com/AndreVuillemot160/gclone) made by Cerda
 
 ## Features
 Below are the features the bot currently has of now. New commands and features will be coming soon!
