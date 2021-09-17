@@ -24,6 +24,7 @@ Before you get started, you need [Python](https://python.org) 3.7 or later to ru
 - **[GClone](https://github.com/donwa/gclone)** - Run the shell / batch script if you are on Linux to install, or add the `gclone.exe` file to your system PATH variables if you are on Windows. I think putting the script in the same directory as GClone in Windows will work as well.
 - **[AutoRClone](https://github.com/xyou365/autorclone)** - GClone requires service accounts. To generate and manage them, use AutoRClone. You can then configure GClone using the service accounts.
 - **Pip requirements** - In the folder of this GitHub Repository, run `pip install -r requirements.txt` and wait for the Python requirements are finished installing
+- **Docker (OPTIONAL)** - If you want to run the bot in a containerized Docker environment, you have to install Docker first. You can use Heroku too! **THIS IS OPTIONAL AND YOU DON'T HAVE TO USE DOCKER OR HEROKU!**
 
 ## How to run the bot
 First you are going to have to go to the [Discord App Dev Portal](https://discord.com/developers/applications) and then create a new application. Then you are going to want to make it a bot and get its token. NEVER SHARE THIS WITH ANYBODY, IT IS THE WAY THE PYTHON SCRIPT GAINS ACCESS TO THE BOT. In the `config.json` file, you are going to want to put the token in where the `token` line is. After that, set the bot prefix you want and then save the file.
