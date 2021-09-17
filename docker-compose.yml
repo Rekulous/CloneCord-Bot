@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  gclone:
+    build:
+      context: "."
+      dockerfile: "Dockerfile"
+      container_name: clonecord
+      volumes:
+         - ./rclone.conf:$HOME/.config/rclone/rclone.conf
+      restart: unless-stopped
