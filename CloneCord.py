@@ -14,8 +14,10 @@
 # CloneCord Bot V4 BETA by KushTheApplusser and REKULOUS with help from Tasky Lizard & Razorback! GClone made by Donwa on GitHub.
 import json
 import logging
-import os
+import subprocess
 import sys
+import platform
+import os
 import random
 import struct
 import time
@@ -56,12 +58,13 @@ async def on_ready():
     print('CloneCord is Ready!')
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="?help to get help! CloneCord V4 BETA"))
     print('CloneCord Status Ready!')
+    print('Python Version: {}'.format(platform.python_version()))
     print('Discord.py API version: {}'.format(discord.__version__))
     print("==================================================================================================================================================")
     print("--------------------")
     print("GClone Remotes:")
     print()
-    os.system(
+    subprocess.run(
         f"gclone listremotes"
     )
     print("--------------------")
@@ -199,7 +202,7 @@ async def clone(ctx, source, destination):
     await ctx.send(
         "***Check the destination folder in 5 minutes if your clone is couple terabytes. If your clone is less than a terabyte, the clone will be complete within a couple of seconds! The bot will go offline during the clone!***"
     )
-    os.system(
+    subprocess.run(
         f"gclone copy GC:{s1} GC:{d1} --transfers 50 -vP --stats-one-line --stats=15s --ignore-existing --drive-server-side-across-configs --drive-chunk-size 128M --drive-acknowledge-abuse --drive-keep-revision-forever"
     )
     sleep(2)
@@ -215,7 +218,7 @@ async def move(ctx, source, destination):
     await ctx.send(
         "***Check the destination folder in 5 minutes if your transfer is couple terabytes. If your transfer is less than a terabyte, the clone will be complete within a couple of seconds! The bot will go offline during the transfer!***"
     )
-    os.system(
+    subprocess.run(
         f"gclone move GC:{s1} GC:{d1} --transfers 50 --tpslimit-burst 50 --checkers 10 -vP --stats-one-line --stats=15s --ignore-existing --drive-server-side-across-configs --drive-chunk-size 128M --drive-acknowledge-abuse --drive-keep-revision-forever --fast-list"
     )
     sleep(1)
@@ -231,7 +234,7 @@ async def sync(ctx, source, destination):
     await ctx.send(
         "***CloneCord is syncing... it should be done syncing in a couple of minutes! The bot will go offline during the sync!***"
     )
-    os.system(
+    subprocess.run(
         f"gclone sync GC:{s1} GC:{d1} --transfers 50 --tpslimit-burst 50 --checkers 10 -vP --stats-one-line --stats=15s --drive-server-side-across-configs --drive-chunk-size 128M --drive-acknowledge-abuse --drive-keep-revision-forever --fast-list"
     )
     sleep(1)
@@ -246,7 +249,7 @@ async def emptdir(ctx, source):
     await ctx.send(
         "*CloneCord is emptying the directory... it should be done in around 5 minutes if your directory is big!* **If you are worried about losing your deleted files forever, don't worry! You can recover stuff from your trash can! The bot will go offline during emptying the directory!**"
     )
-    os.system(
+    subprocess.run(
         f"gclone delete GC:{s1} -vP --drive-trashed-only --fast-list"
     )
     sleep(1)
@@ -264,7 +267,7 @@ async def md5(ctx, source):
     await ctx.send(
         "**The bot will go offline during the MD5Sum!**"
     )
-    os.system(
+    subprocess.run(
         f"gclone md5sum GC:{s1} --fast-list"
     )
     sleep(1)
@@ -279,7 +282,7 @@ async def rmdi(ctx, source):
     await ctx.send(
         "*Removing empty directories... this should take a few seconds or more.* **If you want to recover your empty folders, don't worry, they will be in your trash can!**"
     )
-    os.system(
+    subprocess.run(
         f"gclone rmdirs GC:{s1} -v --stats-one-line --stats=15s --fast-list"
     )
     sleep(1)
@@ -294,7 +297,7 @@ async def dedupe(ctx, source):
     await ctx.send(
         "*Deduplicating files... this should take a few seconds or more.* **If you want to recover your files / folders, don't worry, they will be in your trash can!**"
     )
-    os.system(
+    subprocess.run(
         f"gclone dedupe --dedupe-mode newest GC:{s1} -v --fast-list"
     )
     sleep(1)
@@ -309,7 +312,7 @@ async def mkdir(ctx, source):
     await ctx.send(
         "***Creating directory...***"
     )
-    os.system(
+    subprocess.run(
         f"gclone mkdir GC:{s1}"
     )
     sleep(1)
@@ -324,7 +327,7 @@ async def purge(ctx, source):
     await ctx.send(
         "***Purging directory...***"
     )
-    os.system(
+    subprocess.run(
         f"gclone purge GC:{s1} -vP --stats-one-line --stats=15s --fast-list"
     )
     sleep(1)
@@ -343,9 +346,7 @@ async def purge(ctx, source):
 @mkdir.error
 @purge.error
 async def error(ctx, error):
-  await ctx.send("**There is an error in your command:**")
-  await ctx.send(error)
-  await ctx.send("**Use `?help` or `?help <command>` to get help on commands!**")
+  await ctx.send("**There is an error in your command:** `{}`".format(error) + "\n**Use `?help` or `?help <command>` to get help on commands!**")
 
 
 
@@ -358,7 +359,7 @@ async def ping(ctx: commands.Context):
     message = await ctx.send("Pinging...")
     end_time = time.time()
     
-    await message.edit(content=f":ping_pong:    *Pong!*    **`{round(bot.latency * 1000)}ms`**\n**API:** **`{round((end_time - start_time) * 1000)}ms`**  :ping_pong:")
+    await message.edit(content=f":ping_pong:    *Pong!*    **`{round(bot.latency * 1000)}ms`**\n**API Ping:** **`{round((end_time - start_time) * 1000)}ms`**  :ping_pong:")
     print("||=- - - - - - - - > Pinged! < - - - - - - - -=||")
 
 
