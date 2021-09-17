@@ -38,7 +38,7 @@ Before you get started, you need [Python](https://python.org) 3.7 or later to ru
 Enjoy using CloneCord!
 
 ## Docker
-1. Follow the first five steps of [How to run the bot](#How to run the bot)
+1. Follow the first five steps of [How to run the bot](#How-to-run-the-bot)
 2. Feel free to edit `Dockerfile` or `docker-compose.yml` to your preferences and desire if you want
 3. Run `docker-compose up -d` and wait for docker-compose to build the container and Docker image
 4. Run `docker conatainer ls` and `docker image ls` to check if the CloneCord container and image is running
