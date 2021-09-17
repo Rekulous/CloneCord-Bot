@@ -35,7 +35,7 @@ Before you get started, you need [Python](https://python.org) 3.7 or later to ru
 5. Open up your Terminal or Command Line and then `cd` into the directory of the Cloned GitHub Repo.
 6. Run `python CloneCord.py` or `python3 CloneCord.py`. The output of the Terminal or Command Line should have no errors and show that everything is all ready!
 
-Enjoy using CloneCord!
+**Enjoy using CloneCord!**
 
 ## Docker
 1. Follow the first five steps of [How to run the bot](#How-to-run-the-bot)
@@ -43,10 +43,10 @@ Enjoy using CloneCord!
 3. Run `docker-compose up -d` and wait for docker-compose to build the container and Docker image
 4. Run `docker conatainer ls` and `docker image ls` to check if the CloneCord container and image is running
 
-If the image and container exists, and the container is running, CloneCord is working! Check to see if your bot is working and enjoy!
+**If the image and container exists, and the container is running, CloneCord is working! Check to see if your bot is working and enjoy!**
 
 ## Heroku
-In development
+Current in development. Don't worry, it'll come
 
 ## Repl.it
 You are not able to run this bot on Replit because it cannot install or run GClone in the Shell or Python. Instead, use Heroku or run it on your system.
