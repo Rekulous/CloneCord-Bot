@@ -1,0 +1,8 @@
+build:
+  docker:
+    worker: Dockerfile
+release:
+  image: worker
+  command:
+    - python3 ./CloneCord.py
+
