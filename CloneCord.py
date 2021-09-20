@@ -331,7 +331,7 @@ async def purge(ctx, source):
         f"gclone purge GC:{s1} -vP --stats-one-line --stats=15s --fast-list"
     )
     sleep(1)
-    await ctx.send("**Purged Directory** --- https://drive.google.com/drive/folders{}".format(source))
+    await ctx.send("**Purged Directory** --- https://drive.google.com/drive/folders/{}".format(source))
     print("===========================================================================[PURGED DIRECTORY]===========================================================================")
 
 
