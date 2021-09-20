@@ -47,6 +47,7 @@ Before you get started, you need [Python](https://python.org) 3.7 or later to ru
 
 ## Heroku
 Deploy to Heroku:
+
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Rekulous/CloneCord-Bot/tree/main)
 
 ## Repl.it
