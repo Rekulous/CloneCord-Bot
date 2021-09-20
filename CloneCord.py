@@ -53,6 +53,7 @@ bot = commands.Bot(command_prefix='?')
 # Print this if the bot is ready and start bot status
 @bot.event
 async def on_ready():
+    print('<===============================|| Running CloneCord Version 5 BETA! ||===============================>')
     print('Connected to bot: {}'.format(bot.user.name))
     print('Bot ID: {}'.format(bot.user.id))
     print('CloneCord is Ready!')
