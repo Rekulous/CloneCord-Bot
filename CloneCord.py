@@ -84,39 +84,39 @@ async def help(ctx, command: Optional[str]):
     list_of_commands = [
         {
             "command": "clone",
-            "value": "<source id> <destination id>"
+            "value": "`<source id> <destination id>`"
         },
         {
             "command": "move",
-            "value": "<source id> <destination id>"
+            "value": "`<source id> <destination id>`"
         },
         {
             "command": "sync",
-            "value": "<source id> <destination id>"
+            "value": "`<source id> <destination id>`"
         },
         {
             "command": "emptdir",
-            "value": "<source id>"
+            "value": "`<source id>`"
         },
         {
             "command": "md5",
-            "value": "<source id>"
+            "value": "`<source id>`"
         },
         {
             "command": "rmdi",
-            "value": "<source id>"
+            "value": "`<source id>`"
         },
         {
             "command": "dedupe",
-            "value": "<source id>"
+            "value": "`<source id>`"
         },
         {
             "command": "mkdir",
-            "value": "<source id>"
+            "value": "`<source id>`"
         },
         {
             "command": "purge",
-            "value": "<source id>"
+            "value": "`<source id>`"
         },
         {
             "command": "ping",
@@ -126,7 +126,7 @@ async def help(ctx, command: Optional[str]):
 
     helpEmbed = discord.Embed(
         title="Here are the available bot commands:",
-        description="**CloneCord is a Discord bot made to run GClone, an RClone mod for Multiple Service Account support in Discord.** *Note:* All commands below are performed synchronously, so the bot can only run one command at a time!"
+        description="**CloneCord is a Discord bot made to run GClone, an RClone mod for Multiple Service Account support in Discord.**\n\n*Note: All commands below are performed synchronously, so the bot can only run one command at a time!*"
         ,color=0x87CEEB)
     helpEmbed.set_author(
         name="CloneCord V4 BETA",
@@ -136,7 +136,7 @@ async def help(ctx, command: Optional[str]):
         icon_url="https://cdn.discordapp.com/emojis/754736642761424986.png")
     helpEmbed.add_field(
         name='help',
-        value="Shows this message. Message ?help <command> to get more info on a command",
+        value="Shows this message. Message `?help <command>` to get more info on a command",
         inline=False)
     helpEmbed.add_field(
         name='clone',
@@ -359,7 +359,7 @@ async def ping(ctx: commands.Context):
     message = await ctx.send("Pinging...")
     end_time = time.time()
     
-    await message.edit(content=f":ping_pong:    *Pong!*    **`{round(bot.latency * 1000)}ms`**\n**API Ping:** **`{round((end_time - start_time) * 1000)}ms`**  :ping_pong:")
+    await message.edit(content=f":ping_pong:    *Pong!*    **`{round(bot.latency * 1000)}ms`**    :ping_pong:\n:ping_pong:    **API Ping:** **`{round((end_time - start_time) * 1000)}ms`**  :ping_pong:")
     print("||=- - - - - - - - > Pinged! < - - - - - - - -=||")
 
 
