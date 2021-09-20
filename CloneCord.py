@@ -56,12 +56,18 @@ async def on_ready():
     print('Connected to bot: {}'.format(bot.user.name))
     print('Bot ID: {}'.format(bot.user.id))
     print('CloneCord is Ready!')
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="?help to get help! CloneCord V4 BETA"))
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="?help to get help! CloneCord V5 BETA"))
     print('CloneCord Status Ready!')
     print('Python Version: {}'.format(platform.python_version()))
     print('Discord.py API version: {}'.format(discord.__version__))
     print("==================================================================================================================================================")
     print("--------------------")
+    print("GClone Version:")
+    print()
+    subprocess.run(
+        f"gclone version"
+    )
+    print("____________________")
     print("GClone Remotes:")
     print()
     subprocess.run(
@@ -129,7 +135,7 @@ async def help(ctx, command: Optional[str]):
         description="**CloneCord is a Discord bot made to run GClone, an RClone mod for Multiple Service Account support in Discord.**\n\n*Note: All commands below are performed synchronously, so the bot can only run one command at a time!*"
         ,color=0x87CEEB)
     helpEmbed.set_author(
-        name="CloneCord V4 BETA",
+        name="CloneCord V5 BETA",
         icon_url="https://1.bp.blogspot.com/-M5PLcSana6M/XgBHF7jUjiI/AAAAAAAAUzs/S24qhuijluwKlzIOnc2gntoI-U83ZsrJACLcBGAsYHQ/s1600/rclone_logo.png")
     helpEmbed.set_footer(
         text="Bot originally created by Kush The A++er#2976. Revamped version by REKULOUS#5580. Thanks to Pratyush.#6969 and Razorback#4637 for the help!",
@@ -182,7 +188,7 @@ async def help(ctx, command: Optional[str]):
         for com in list_of_commands:
             if com["command"] == command:
                 embed1 = discord.Embed(title=command, description=f"?{command} {com['value']}",color=0x87CEEB)
-                embed1.set_author(name="CloneCord V4 BETA",icon_url="https://1.bp.blogspot.com/-M5PLcSana6M/XgBHF7jUjiI/AAAAAAAAUzs/S24qhuijluwKlzIOnc2gntoI-U83ZsrJACLcBGAsYHQ/s1600/rclone_logo.png")
+                embed1.set_author(name="CloneCord V5 BETA",icon_url="https://1.bp.blogspot.com/-M5PLcSana6M/XgBHF7jUjiI/AAAAAAAAUzs/S24qhuijluwKlzIOnc2gntoI-U83ZsrJACLcBGAsYHQ/s1600/rclone_logo.png")
                 embed1.set_footer(text="Source and Destination IDs can be found by finding the jumbled up letters & numbers at the end of a GDrive folder / file URL. Example: 1Zsh8DctvvWZzJgiEI_sqxVoxvKv9VsYp",icon_url="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Google_Drive_logo.png/1200px-Google_Drive_logo.png")
                 await ctx.send(embed=embed1)
     else:
