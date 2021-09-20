@@ -46,7 +46,7 @@ handler = logging.FileHandler(filename="bot.log", encoding="utf-8", mode="w")
 handler.setFormatter(logging.Formatter("%(asctime)s:%(levelname)s:%(name)s: %(message)s"))
 logger.addHandler(handler)
 
-bot = commands.Bot(command_prefix='?')
+bot = commands.Bot(command_prefix='PLACE YOUR BOT PREFIX HERE')
 
 
 
@@ -198,7 +198,7 @@ async def help(ctx, command: Optional[str]):
 
 
 
-# = = = = {GCLONE BOT COMMANDS } = = = =
+# = = = = { GCLONE BOT COMMANDS } = = = =
 
 
 # GClone Folder / File Clone Command
