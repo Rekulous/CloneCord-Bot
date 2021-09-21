@@ -46,8 +46,8 @@ handler = logging.FileHandler(filename="bot.log", encoding="utf-8", mode="w")
 handler.setFormatter(logging.Formatter("%(asctime)s:%(levelname)s:%(name)s: %(message)s"))
 logger.addHandler(handler)
 
-bot = commands.Bot(command_prefix='PLACE YOUR BOT PREFIX HERE')
 
+bot = commands.Bot(command_prefix=prefix)
 
 
 # Print this if the bot is ready and start bot status
@@ -57,7 +57,7 @@ async def on_ready():
     print('Connected to bot: {}'.format(bot.user.name))
     print('Bot ID: {}'.format(bot.user.id))
     print('CloneCord is Ready!')
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="?help to get help! CloneCord V5 BETA"))
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=prefix + "help to get help! CloneCord V5 BETA"))
     print('CloneCord Status Ready!')
     print('Python Version: {}'.format(platform.python_version()))
     print('Discord.py API version: {}'.format(discord.__version__))
