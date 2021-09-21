@@ -32,9 +32,8 @@ Before you get started, you need [Python](https://python.org) 3.7 or later to ru
 2. Go to the [Discord App Dev Portal](https://discord.com/developers/applications) and then create a new application.
 3. Turn the application into a bot and copy its token. **NEVER SHARE THIS WITH ANYBODY, IT IS THE WAY THE PYTHON SCRIPT GAINS ACCESS TO THE BOT!!!**
 4. In the `config.json` file, you are going to want to put the token in where the `token` line is. After that, set the bot prefix you want and then save the file.
-5. Now where the `CloneCord.py` file is, you edit it and go onto the line that tells you to change your bot prefix, and then you change the prefix to whatever is in your `config.json` file. If you don't do this, then the bot won't follow your commands!
-6. Open up your Terminal or Command Line and then `cd` into the directory of the Cloned GitHub Repo.
-7. Run `python CloneCord.py` or `python3 CloneCord.py`. The output of the Terminal or Command Line should have no errors and show that everything is all ready!
+5. Open up your Terminal or Command Line and then `cd` into the directory of the Cloned GitHub Repo.
+6. Run `python CloneCord.py` or `python3 CloneCord.py`. The output of the Terminal or Command Line should have no errors and show that everything is all ready!
 
 **Enjoy using CloneCord!**
 
