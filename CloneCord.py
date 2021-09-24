@@ -252,7 +252,7 @@ async def sync(ctx, source, destination):
 async def emptdir(ctx, source):
     s1 = "{" + source + "}"
     await ctx.send(
-        "*CloneCord is emptying the directory... it should be done in around 5 minutes if your directory is big!* **If you are worried about losing your deleted files forever, don't worry! You can recover stuff from your trash can! The bot will go offline during emptying the directory!**"
+        "*CloneCord is emptying the directory... it should be done in around 5 minutes if your directory is big!* **If you are worried about losing your deleted files forever, don't worry! You can recover stuff from your trash can!**"
     )
     proc = await asyncio.create_subprocess_exec(
         "gclone", "delete", f"GC:{s1}", "-vP", "--drive-trashed-only", "--fast-list"
@@ -268,9 +268,6 @@ async def md5(ctx, source):
     s1 = "{" + source + "}"
     await ctx.send(
         "***Producing MD5 Hash, please wait...***"
-    )
-    await ctx.send(
-        "**The bot will go offline during the MD5Sum!**"
     )
     proc = await asyncio.create_subprocess_exec(
         "gclone", "md5sum", f"GC:{s1}", "--fast-list"
