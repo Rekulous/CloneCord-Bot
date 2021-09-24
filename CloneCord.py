@@ -29,9 +29,9 @@ from discord.ext import commands
 from discord.utils import get
 
 
-# Get config.json
+# Get bot config.json so the code has access to your bot account.
 if not os.path.isfile("config.json"):
-    sys.exit("Your Discord bot 'config.json' was not found! Please add it and try again. Make sure you CD into the directory of this Python script before you run it and check config.json is in there as well!")
+    sys.exit("Your Discord bot 'config.json' was not found! Please add it and try again. Make sure you CD into the directory of this Python script before you run it and check config.json is in there as well!\n\nYour bot config needs to have a prefix and a token for your bot to function and run.")
 else:
     with open("config.json", "r") as config:
         data = json.load(config)
@@ -39,18 +39,17 @@ else:
         prefix = data["prefix"]
 
 
-# Sweet ass bot logging
+# Some sweet bot logging. I don't think it logs GClone commands and stuff like that
 logger = logging.getLogger("discord")
 logger.setLevel(logging.DEBUG)
 handler = logging.FileHandler(filename="bot.log", encoding="utf-8", mode="w")
 handler.setFormatter(logging.Formatter("%(asctime)s:%(levelname)s:%(name)s: %(message)s"))
 logger.addHandler(handler)
 
-
+# Bot prefix set to the one in your config.json file. Don't modify or touch this
 bot = commands.Bot(command_prefix=prefix)
 
-
-# Print this if the bot is ready and start bot status
+# Print this if the bot is ready and start bot status + give GClone details.
 @bot.event
 async def on_ready():
     print('<===============================|| Running CloneCord Version 5 BETA! ||===============================>')
@@ -78,13 +77,13 @@ async def on_ready():
     print("==================================================================[ALL READY!!!]==================================================================")
 
 
-# Block commands in bot DMs
+# Block commands in bot DMs for security. If you are using the bot for your own private use and its not in a server, you can remove the bot check.
 @bot.check
 async def globally_block_dms(ctx):
     return ctx.guild is not None
 
 
-# Remove default help message and replace it with embed one
+# Remove default Discord.py help message and replace it with embed one. Send "<your prefix>help <command>" to get info on how to use a command and get GDrive IDs.
 bot.remove_command("help")
 @bot.command()
 async def help(ctx, command: Optional[str]):
@@ -133,7 +132,7 @@ async def help(ctx, command: Optional[str]):
 
     helpEmbed = discord.Embed(
         title="Here are the available bot commands:",
-        description="**CloneCord is a Discord bot made to run GClone, an RClone mod for Multiple Service Account support in Discord.**\n\n*Note: All commands below are performed synchronously, so the bot can only run one command at a time!*"
+        description="**CloneCord is a Discord bot made to run GClone, an RClone mod for Multiple Service Account support in Discord.**\n\n*Note: All commands below can be ran more than once at the same time, but there is a cooldown, so you don't overload / break the bot!*"
         ,color=0x87CEEB)
     helpEmbed.set_author(
         name="CloneCord V5 BETA",
@@ -197,9 +196,10 @@ async def help(ctx, command: Optional[str]):
 
 
 
-
 # = = = = { GCLONE BOT COMMANDS } = = = =
-
+# All bot commands here can be ran more than once at the same time, but running too many commands at once can create problems that you don't want.
+# It is recommended you not touch most of this code if you don't know what you are doing.
+# As of now, there is no code for checking GDrive Folder IDs so you probably have to check a folder for yourself or check logs.
 
 # GClone Folder / File Clone Command
 @bot.command()
@@ -356,6 +356,9 @@ async def purge(ctx, source):
 @dedupe.error
 @mkdir.error
 @purge.error
+# All commands by default have a 140 Second Cooldown. If you want, you can remove the code before "else:" to remove cooldowns. Don't remove @<command>.error stuff!
+# Not recommended to remove this if you are using this bot in a server with other people than you though.
+# Be sure to remove the @commands.cooldown(1, 140, commands.BucketType.user) stuff too in the code for commands if you want to remove cooldowns.
 async def error(ctx, error):
     if isinstance(error, commands.CommandOnCooldown):
         await ctx.send(error)
@@ -367,7 +370,7 @@ async def error(ctx, error):
 
 # = = = = {EXTRA COMMANDS / BOT UTILITY} = = = =
 
-# Ping Command
+# Ping Command to get the bot's current websocket and API latency
 @bot.command()
 async def ping(ctx: commands.Context):
     start_time = time.time()
@@ -377,5 +380,5 @@ async def ping(ctx: commands.Context):
     await message.edit(content=f":ping_pong:    *Pong!*    **`{round(bot.latency * 1000)}ms`**    :ping_pong:\n:ping_pong:    **API Ping:** **`{round((end_time - start_time) * 1000)}ms`**  :ping_pong:")
     print("||=- - - - - - - - > Pinged! < - - - - - - - -=||")
 
-
+# Start the bot
 bot.run(token)
