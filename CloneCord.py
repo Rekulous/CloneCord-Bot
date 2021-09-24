@@ -23,7 +23,7 @@ import struct
 import time
 from time import sleep
 from typing import Optional
-
+import asyncio
 import discord
 from discord.ext import commands
 from discord.utils import get
@@ -207,12 +207,10 @@ async def clone(ctx, source, destination):
     s1 = "{" + source + "}"
     d1 = "{" + destination + "}"
     await ctx.send(
-        "***Check the destination folder in 5 minutes if your clone is couple terabytes. If your clone is less than a terabyte, the clone will be complete within a couple of seconds! The bot will go offline during the clone!***"
+        "***Check the destination folder in 5 minutes if your clone is couple terabytes. If your clone is less than a terabyte, the clone will be complete within a couple of seconds!***"
     )
-    subprocess.run(
-        f"gclone copy GC:{s1} GC:{d1} --transfers 50 -vP --stats-one-line --stats=15s --ignore-existing --drive-server-side-across-configs --drive-chunk-size 128M --drive-acknowledge-abuse --drive-keep-revision-forever"
-    )
-    sleep(2)
+    proc = await asyncio.create_subprocess_exec("gclone", "copy", f"GC:{s1}", f"GC:{d1}", "--transfers", "50", "-vP", "--stats-one-line", "--stats=15s", "--ignore-existing", "--drive-server-side-across-configs", "--drive-chunk-size", "128M", "--drive-acknowledge-abuse", "--drive-keep-revision-forever")
+    await proc.wait()
     await ctx.send("**Cloning Complete** --- https://drive.google.com/drive/folders/{}".format(destination))
     print("===========================================================================[CLONING COMPLETE]===========================================================================")
 
@@ -223,12 +221,12 @@ async def move(ctx, source, destination):
     s1 = "{" + source + "}"
     d1 = "{" + destination + "}"
     await ctx.send(
-        "***Check the destination folder in 5 minutes if your transfer is couple terabytes. If your transfer is less than a terabyte, the clone will be complete within a couple of seconds! The bot will go offline during the transfer!***"
+        "***Check the destination folder in 5 minutes if your transfer is couple terabytes. If your transfer is less than a terabyte, the clone will be complete within a couple of seconds!***"
     )
-    subprocess.run(
-        f"gclone move GC:{s1} GC:{d1} --transfers 50 --tpslimit-burst 50 --checkers 10 -vP --stats-one-line --stats=15s --ignore-existing --drive-server-side-across-configs --drive-chunk-size 128M --drive-acknowledge-abuse --drive-keep-revision-forever --fast-list"
+    proc = await asyncio.create_subprocess_exec(
+        "gclone", "move", f"GC:{s1}", f"GC:{d1}", "--transfers", "50", "--tpslimit-burst", "50" "--checkers", "10", "-vP", "--stats-one-line", "--stats=15s", "--ignore-existing", "--drive-server-side-across-configs", "--drive-chunk-size", "128M", "--drive-acknowledge-abuse", "--drive-keep-revision-forever", "--fast-list"
     )
-    sleep(1)
+    await proc.wait()
     await ctx.send("**File Transfers Completed** --- https://drive.google.com/drive/folders/{}".format(destination))
     print("===========================================================================[FILE TRANSFERS COMPLETED]===========================================================================")
 
@@ -239,12 +237,12 @@ async def sync(ctx, source, destination):
     s1 = "{" + source + "}"
     d1 = "{" + destination + "}"
     await ctx.send(
-        "***CloneCord is syncing... it should be done syncing in a couple of minutes! The bot will go offline during the sync!***"
+        "***CloneCord is syncing... it should be done syncing in a couple of minutes!***"
     )
-    subprocess.run(
-        f"gclone sync GC:{s1} GC:{d1} --transfers 50 --tpslimit-burst 50 --checkers 10 -vP --stats-one-line --stats=15s --drive-server-side-across-configs --drive-chunk-size 128M --drive-acknowledge-abuse --drive-keep-revision-forever --fast-list"
+    proc = await asyncio.create_subprocess_exec(
+        "gclone", "sync", f"GC:{s1}", f"GC:{d1}", "--transfers", "50", "--tpslimit-burst", "50", "--checkers", "10", "-vP", "--stats-one-line", "--stats=15s", "--drive-server-side-across-configs", "--drive-chunk-size", "128M", "--drive-acknowledge-abuse", "--drive-keep-revision-forever", "--fast-list"
     )
-    sleep(1)
+    await proc.wait()
     await ctx.send("**Sync Completed** --- https://drive.google.com/drive/folders/{}".format(destination))
     print("===========================================================================[SYNC COMPLETED]===========================================================================")
 
@@ -256,10 +254,10 @@ async def emptdir(ctx, source):
     await ctx.send(
         "*CloneCord is emptying the directory... it should be done in around 5 minutes if your directory is big!* **If you are worried about losing your deleted files forever, don't worry! You can recover stuff from your trash can! The bot will go offline during emptying the directory!**"
     )
-    subprocess.run(
-        f"gclone delete GC:{s1} -vP --drive-trashed-only --fast-list"
+    proc = await asyncio.create_subprocess_exec(
+        "gclone", "delete", f"GC:{s1}", "-vP", "--drive-trashed-only", "--fast-list"
     )
-    sleep(1)
+    await proc.wait()
     await ctx.send("**Emptying Directory Completed** --- https://drive.google.com/drive/folders/{}".format(source))
     print("===========================================================================[FINISHED EMPTYING DIRECTORY]===========================================================================")
 
@@ -274,10 +272,10 @@ async def md5(ctx, source):
     await ctx.send(
         "**The bot will go offline during the MD5Sum!**"
     )
-    subprocess.run(
-        f"gclone md5sum GC:{s1} --fast-list"
+    proc = await asyncio.create_subprocess_exec(
+        "gclone", "md5sum", f"GC:{s1}", "--fast-list"
     )
-    sleep(1)
+    await proc.wait()
     await ctx.send("**Finished Producing MD5** --- https://drive.google.com/drive/folders/{}".format(source))
     print("===========================================================================[FINISHED PRODUCING MD5]===========================================================================")
 
@@ -289,10 +287,10 @@ async def rmdi(ctx, source):
     await ctx.send(
         "*Removing empty directories... this should take a few seconds or more.* **If you want to recover your empty folders, don't worry, they will be in your trash can!**"
     )
-    subprocess.run(
-        f"gclone rmdirs GC:{s1} -v --stats-one-line --stats=15s --fast-list"
+    proc = await asyncio.create_subprocess_exec(
+        "gclone", "rmdirs" f"GC:{s1}", "-v", "--stats-one-line", "--stats=15s", "--fast-list"
     )
-    sleep(1)
+    await proc.wait()
     await ctx.send("**Finished removing empty dirs** --- https://drive.google.com/drive/folders/{}".format(source))
     print("===========================================================================[FINISHED REMOVING EMPTY DIRECTORIES]===========================================================================")
 
@@ -304,10 +302,10 @@ async def dedupe(ctx, source):
     await ctx.send(
         "*Deduplicating files... this should take a few seconds or more.* **If you want to recover your files / folders, don't worry, they will be in your trash can!**"
     )
-    subprocess.run(
-        f"gclone dedupe --dedupe-mode newest GC:{s1} -v --fast-list"
+    proc = await asyncio.create_subprocess_exec(
+        "gclone", "dedupe", "--dedupe-mode", "newest", f"GC:{s1}", "-v", "--fast-list"
     )
-    sleep(1)
+    await proc.wait()
     await ctx.send("**Finished Dedupe** --- https://drive.google.com/drive/folders/{}".format(source))
     print("===========================================================================[FINISHED DEDUPING FILES]===========================================================================")
 
@@ -319,10 +317,10 @@ async def mkdir(ctx, source):
     await ctx.send(
         "***Creating directory...***"
     )
-    subprocess.run(
-        f"gclone mkdir GC:{s1}"
+    proc = await asyncio.create_subprocess_exec(
+        "gclone", "mkdir", f"GC:{s1}"
     )
-    sleep(1)
+    await proc.wait()
     await ctx.send("**Created directory** --- https://drive.google.com/drive/folders/{}".format(source))
     print("===========================================================================[CREATED DIRECTORY]===========================================================================")
 
@@ -334,10 +332,10 @@ async def purge(ctx, source):
     await ctx.send(
         "***Purging directory...***"
     )
-    subprocess.run(
-        f"gclone purge GC:{s1} -vP --stats-one-line --stats=15s --fast-list"
+    proc = await asyncio.create_subprocess_exec(
+        "gclone", "purge", f"GC:{s1}", "-vP", "--stats-one-line", "--stats=15s", "--fast-list"
     )
-    sleep(1)
+    await proc.wait()
     await ctx.send("**Purged Directory** --- https://drive.google.com/drive/folders/{}".format(source))
     print("===========================================================================[PURGED DIRECTORY]===========================================================================")
 
