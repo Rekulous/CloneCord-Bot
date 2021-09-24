@@ -171,7 +171,7 @@ async def help(ctx, command: Optional[str]):
     )
     helpEmbed.add_field(
         name='dedupe',
-        value="Deduplicate files / folders"
+        value="Deduplicate files / folders. Great for mass removing duplicates of cloned files"
     )
     helpEmbed.add_field(
         name='mkdir',
