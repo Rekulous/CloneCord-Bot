@@ -12,6 +12,7 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 # CloneCord Bot V5 BETA by KushTheApplusser and REKULOUS with help from Tasky Lizard & Razorback! GClone made by Donwa on GitHub.
+# Bot tested by MineRocker, Saaz, REKULOUS, and KushTheApplusser.
 import json
 import logging
 import subprocess
@@ -31,7 +32,7 @@ from discord.utils import get
 
 # Get bot config.json so the code has access to your bot account.
 if not os.path.isfile("config.json"):
-    sys.exit("Your Discord bot 'config.json' was not found! Please add it and try again. Make sure you CD into the directory of this Python script before you run it and check config.json is in there as well!\n\nYour bot config needs to have a prefix and a token for your bot to function and run.")
+    sys.exit("Your Discord bot 'config.json' was not found! Please add it and try again. Make sure you CD into the directory of this Python script before you run it and check config.json is in there as well!\n\nYour bot config needs to have a prefix and a token for your bot to function and run. Make sure you also have edited your rclone.conf file in Notepad or a Text Editor to get your Service Accounts!")
 else:
     with open("config.json", "r") as config:
         data = json.load(config)
