@@ -203,6 +203,7 @@ async def help(ctx, command: Optional[str]):
 
 # GClone Folder / File Clone Command
 @bot.command()
+@commands.cooldown(1, 140, commands.BucketType.user)
 async def clone(ctx, source, destination):
     s1 = "{" + source + "}"
     d1 = "{" + destination + "}"
@@ -217,6 +218,7 @@ async def clone(ctx, source, destination):
 
 # GClone Folder / File Move Command
 @bot.command()
+@commands.cooldown(1, 140, commands.BucketType.user)
 async def move(ctx, source, destination):
     s1 = "{" + source + "}"
     d1 = "{" + destination + "}"
@@ -233,6 +235,7 @@ async def move(ctx, source, destination):
 
 # GClone Sync Command
 @bot.command()
+@commands.cooldown(1, 140, commands.BucketType.user)
 async def sync(ctx, source, destination):
     s1 = "{" + source + "}"
     d1 = "{" + destination + "}"
@@ -249,6 +252,7 @@ async def sync(ctx, source, destination):
 
 # GClone Empty / Clear Directory Command
 @bot.command()
+@commands.cooldown(1, 140, commands.BucketType.user)
 async def emptdir(ctx, source):
     s1 = "{" + source + "}"
     await ctx.send(
@@ -264,6 +268,7 @@ async def emptdir(ctx, source):
 
 # GClone md5sum file creation for all the objects in a directory
 @bot.command()
+@commands.cooldown(1, 140, commands.BucketType.user)
 async def md5(ctx, source):
     s1 = "{" + source + "}"
     await ctx.send(
@@ -279,6 +284,7 @@ async def md5(ctx, source):
 
 # GClone Remove Empty Directories
 @bot.command()
+@commands.cooldown(1, 140, commands.BucketType.user)
 async def rmdi(ctx, source):
     s1 = "{" + source + "}"
     await ctx.send(
@@ -294,6 +300,7 @@ async def rmdi(ctx, source):
 
 # GClone Dedupe Files / Folders
 @bot.command()
+@commands.cooldown(1, 140, commands.BucketType.user)
 async def dedupe(ctx, source):
     s1 = "{" + source + "}"
     await ctx.send(
@@ -309,6 +316,7 @@ async def dedupe(ctx, source):
 
 # GClone Create Directory
 @bot.command()
+@commands.cooldown(1, 140, commands.BucketType.user)
 async def mkdir(ctx, source):
     s1 = "{" + source + "}"
     await ctx.send(
@@ -324,6 +332,7 @@ async def mkdir(ctx, source):
 
 # GClone Purge Folders
 @bot.command()
+@commands.cooldown(1, 140, commands.BucketType.user)
 async def purge(ctx, source):
     s1 = "{" + source + "}"
     await ctx.send(
@@ -348,7 +357,11 @@ async def purge(ctx, source):
 @mkdir.error
 @purge.error
 async def error(ctx, error):
-  await ctx.send("**There is an error in your command:** `{}`".format(error) + "\n**Use `?help` or `?help <command>` to get help on commands!**")
+    if isinstance(error, commands.CommandOnCooldown):
+        await ctx.send(error)
+        return
+    else:
+        await ctx.send("**There is an error in your command:** `{}`".format(error) + "\n**Use `?help` or `?help <command>` to get help on commands!**")
 
 
 
