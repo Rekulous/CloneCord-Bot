@@ -167,7 +167,7 @@ async def help(ctx, command: Optional[str]):
     )
     helpEmbed.add_field(
         name='rmdi',
-        value="Remove empty directories"
+        value="Remove empty directories in a folder"
     )
     helpEmbed.add_field(
         name='dedupe',
