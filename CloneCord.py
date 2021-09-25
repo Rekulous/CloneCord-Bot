@@ -14,7 +14,7 @@
 # CloneCord Bot V5 BETA by KushTheApplusser and REKULOUS with help from Tasky Lizard & Razorback! GClone made by Donwa on GitHub.
 # Bot tested by MineRocker, Saaz, REKULOUS, and KushTheApplusser. Inspired by Telegram GClone, GDrive, and Mirror Bots.
 # Also inspired by RoshanConnor and Tommmmyums GClone Batch Script for Windows.
-# Thank you to all the testers, devs, and all the people over at BIOHAZARD, FREEMEDIAHECKYEAH, The MegaDrive! Thank you to the users of this too!
+# Thank you to all the testers, devs, and all the people over at BIOHAZARD, FREEMEDIAHECKYEAH, The MegaDrive! Thank you to the users of this bot too!
 
 import json
 import logging
