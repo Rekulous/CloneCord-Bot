@@ -11,11 +11,17 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-# CloneCord Bot V5 BETA by KushTheApplusser and REKULOUS with help from Tasky Lizard & Razorback! GClone made by Donwa on GitHub.
+# ----------------------------------------------------------------------------------------------------------------------
+
+# CloneCord Bot V6 BETA by REKULOUS with help from Tasky Lizard & Razorback! GClone made by Donwa on GitHub. Original Discord "GClone-Bot" by KushTheApplusser!
+
 # Bot tested by MineRocker, Saaz, REKULOUS, and KushTheApplusser. Inspired by Telegram GClone, GDrive, and Mirror Bots.
 # Also inspired by RoshanConnor and Tommmmyums GClone Batch Script for Windows.
 # Thank you to all the testers, devs, and all the people over at BIOHAZARD, FREEMEDIAHECKYEAH, The MegaDrive! Thank you to the users of this bot too!
 
+# If you want to help with the development of this bot, you can fork it on GitHub, edit the code you think needs work / add a feature, and create a pull request! Doing this helps me a lot!
+
+# Python module imports. DO NOT TOUCH UNLESS YOU ARE ADDING A NEW FEATURE! These imports make the bot work and function properly!
 import json
 import logging
 import subprocess
@@ -31,6 +37,10 @@ import asyncio
 import discord
 from discord.ext import commands
 from discord.utils import get
+
+# Change CMD Text Color to Cyan, and Change CMD / Python Window Title Name (ONLY FOR WINDOWS)
+subprocess.run('title CloneCord Discord Bot V6 BETA by REKULOUS. Or')
+subprocess.run('color 0B')
 
 
 # Get bot config.json so the code has access to your bot account.
@@ -50,7 +60,7 @@ handler = logging.FileHandler(filename="bot.log", encoding="utf-8", mode="w")
 handler.setFormatter(logging.Formatter("%(asctime)s:%(levelname)s:%(name)s: %(message)s"))
 logger.addHandler(handler)
 
-# Bot prefix set to the one in your config.json file. Don't modify or touch this
+# Bot prefix set to the one in your config.json file. Don't modify or touch this!
 bot = commands.Bot(command_prefix=prefix)
 
 # Print this if the bot is ready and start bot status + give GClone details.
@@ -60,12 +70,12 @@ async def on_ready():
     print('Connected to bot: {}'.format(bot.user.name))
     print('Bot ID: {}'.format(bot.user.id))
     print('CloneCord is Ready!')
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=prefix + "help to get help! CloneCord V5 BETA"))
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=prefix + "help to get help! CloneCord V6 BETA"))
     print('CloneCord Status Ready!')
     print('Python Version: {}'.format(platform.python_version()))
     print('Discord.py API version: {}'.format(discord.__version__))
     print("==================================================================================================================================================")
-    print("--------------------")
+    print("----------------------------------------------------------------------------------------------------------------------")
     print("GClone Version:")
     print()
     subprocess.run(
@@ -77,7 +87,7 @@ async def on_ready():
     subprocess.run(
         f"gclone listremotes"
     )
-    print("--------------------")
+    print("----------------------------------------------------------------------------------------------------------------------")
     print("==================================================================[ALL READY!!!]==================================================================")
 
 
@@ -88,6 +98,7 @@ async def globally_block_dms(ctx):
 
 
 # Remove default Discord.py help message and replace it with embed one. Send "<your prefix>help <command>" to get info on how to use a command and get GDrive IDs.
+# If you want, you can change the help message to what you want it to explain / say!
 bot.remove_command("help")
 @bot.command()
 async def help(ctx, command: Optional[str]):
@@ -139,7 +150,7 @@ async def help(ctx, command: Optional[str]):
         description="**CloneCord is a Discord bot made to run GClone, an RClone mod for Multiple Service Account support in Discord.**\n\n*Note: All commands below can be ran more than once at the same time, but there is a cooldown, so you don't overload / break the bot!*"
         ,color=0x87CEEB)
     helpEmbed.set_author(
-        name="CloneCord V5 BETA",
+        name="CloneCord V6 BETA",
         icon_url="https://1.bp.blogspot.com/-M5PLcSana6M/XgBHF7jUjiI/AAAAAAAAUzs/S24qhuijluwKlzIOnc2gntoI-U83ZsrJACLcBGAsYHQ/s1600/rclone_logo.png")
     helpEmbed.set_footer(
         text="Bot originally created by Kush The A++er#2976. Revamped version by REKULOUS#5580. Thanks to Pratyush.#6969 and Razorback#4637 for the help!",
@@ -192,7 +203,7 @@ async def help(ctx, command: Optional[str]):
         for com in list_of_commands:
             if com["command"] == command:
                 embed1 = discord.Embed(title=command, description=f"?{command} {com['value']}",color=0x87CEEB)
-                embed1.set_author(name="CloneCord V5 BETA",icon_url="https://1.bp.blogspot.com/-M5PLcSana6M/XgBHF7jUjiI/AAAAAAAAUzs/S24qhuijluwKlzIOnc2gntoI-U83ZsrJACLcBGAsYHQ/s1600/rclone_logo.png")
+                embed1.set_author(name="CloneCord V6 BETA",icon_url="https://1.bp.blogspot.com/-M5PLcSana6M/XgBHF7jUjiI/AAAAAAAAUzs/S24qhuijluwKlzIOnc2gntoI-U83ZsrJACLcBGAsYHQ/s1600/rclone_logo.png")
                 embed1.set_footer(text="Source and Destination IDs can be found by finding the jumbled up letters & numbers at the end of a GDrive folder / file URL. Example: 1Zsh8DctvvWZzJgiEI_sqxVoxvKv9VsYp",icon_url="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Google_Drive_logo.png/1200px-Google_Drive_logo.png")
                 await ctx.send(embed=embed1)
     else:
@@ -202,7 +213,7 @@ async def help(ctx, command: Optional[str]):
 
 # = = = = { GCLONE BOT COMMANDS } = = = =
 # All bot commands here can be ran more than once at the same time, but running too many commands at once can create problems that you don't want.
-# It is recommended you not touch most of this code if you don't know what you are doing.
+# It is recommended you not touch most of this code if you don't know what you are doing!
 # As of now, there is no code for checking GDrive Folder IDs so you probably have to check a folder for yourself or check logs.
 
 # GClone Folder / File Clone Command
@@ -350,7 +361,7 @@ async def purge(ctx, source):
     print("===========================================================================[PURGED DIRECTORY]===========================================================================")
 
 
-# CloneCord Error Messages
+# CloneCord Error Messages to make the bot have a command cooldown and send error messages about invalid commands / arguments
 @clone.error
 @move.error
 @sync.error
@@ -384,5 +395,5 @@ async def ping(ctx: commands.Context):
     await message.edit(content=f":ping_pong:    *Pong!*    **`{round(bot.latency * 1000)}ms`**    :ping_pong:\n:ping_pong:    **API Ping:** **`{round((end_time - start_time) * 1000)}ms`**  :ping_pong:")
     print("||=- - - - - - - - > Pinged! < - - - - - - - -=||")
 
-# Start the bot
+# Start the bot, DO NOT TOUCH!
 bot.run(token)
