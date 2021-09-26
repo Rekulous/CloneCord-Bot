@@ -39,8 +39,8 @@ from discord.ext import commands
 from discord.utils import get
 
 # Change CMD Text Color to Cyan, and Change CMD / Python Window Title Name (ONLY FOR WINDOWS)
-subprocess.run('title CloneCord Discord Bot V6 BETA by REKULOUS. Or')
-subprocess.run('color 0B')
+os.system('title CloneCord Discord Bot V6 BETA by REKULOUS. Original code by KushTheApplusser')
+os.system('color 0B')
 
 
 # Get bot config.json so the code has access to your bot account.
