@@ -79,13 +79,13 @@ async def on_ready():
     print("GClone Version:")
     print()
     subprocess.run(
-        f"gclone version"
+        ["gclone", "version"]
     )
     print("____________________")
     print("GClone Remotes:")
     print()
     subprocess.run(
-        f"gclone listremotes"
+        ["gclone", "listremotes"]
     )
     print("----------------------------------------------------------------------------------------------------------------------")
     print("==================================================================[ALL READY!!!]==================================================================")
