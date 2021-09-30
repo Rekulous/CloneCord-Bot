@@ -46,9 +46,9 @@ Before you get started, you need [Python](https://python.org) 3.7 or later to ru
 **If the image and container exists, and the container is running, CloneCord is working! Check to see if your bot is working and enjoy!**
 
 ## Heroku
-Heroku deploy button or instructions will come soon! Don't worry...
-
-For now you can fork this repository and set it to private, then change the config.json file to your credentials. After that you can go to Heroku and create a new app. Then authorize Heroku to access your GitHub account and set your app to your forked CloneCord repo. Run the app and boom. You just got your Discord bot running!
+Before you deploy it. Fork the repository, and make it private, then change the config.json file to your credentials.
+After that go to link `https://heroku.com/deploy?template=<repository>`
+Then authorize Heroku to access your GitHub account and specify your bot to your own forked CloneCord repo. Run the app and boom. You just got your Discord bot running!
 
 **Although this is easy to do, I wouldn't really recommend doing this because its probably an insecure thing to do.**
 
