@@ -1,0 +1,13 @@
+{
+	"name": "CloneCord-Bot",
+	"description": "A Discord Torrent gclone bot based on Discord.py.",
+	"repository": "https://github.com/Rekulous/CloneCord-Bot",
+	"website": "https://github.com/Rekulous/CloneCord-Bot",
+	"stack": "container",
+	"formation": {
+		"worker": {
+			"quantity": 1,
+			"size": "free"
+		}
+	}
+}
