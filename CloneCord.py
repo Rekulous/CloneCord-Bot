@@ -225,7 +225,9 @@ async def clone(ctx, source, destination):
     await ctx.send(
         "***Check the destination folder in 5 minutes if your clone is couple terabytes. If your clone is less than a terabyte, the clone will be complete within a couple of seconds!***"
     )
-    proc = await asyncio.create_subprocess_exec("gclone", "copy", f"GC:{s1}", f"GC:{d1}", "--transfers", "50", "-vP", "--stats-one-line", "--stats=15s", "--ignore-existing", "--drive-server-side-across-configs", "--drive-chunk-size", "128M", "--drive-acknowledge-abuse", "--drive-keep-revision-forever")
+    proc = await asyncio.create_subprocess_exec(
+        ["gclone", "copy", f"GC:{s1}", f"GC:{d1}", "--transfers", "50", "-vP", "--stats-one-line", "--stats=15s", "--ignore-existing", "--drive-server-side-across-configs", "--drive-chunk-size", "128M", "--drive-acknowledge-abuse", "--drive-keep-revision-forever"]
+    )
     await proc.wait()
     await ctx.send("**Cloning Complete** --- https://drive.google.com/drive/folders/{}".format(destination))
     print("===========================================================================[CLONING COMPLETE]===========================================================================")
@@ -241,7 +243,7 @@ async def move(ctx, source, destination):
         "***Check the destination folder in 5 minutes if your transfer is couple terabytes. If your transfer is less than a terabyte, the clone will be complete within a couple of seconds!***"
     )
     proc = await asyncio.create_subprocess_exec(
-        "gclone", "move", f"GC:{s1}", f"GC:{d1}", "--transfers", "50", "--tpslimit-burst", "50" "--checkers", "10", "-vP", "--stats-one-line", "--stats=15s", "--ignore-existing", "--drive-server-side-across-configs", "--drive-chunk-size", "128M", "--drive-acknowledge-abuse", "--drive-keep-revision-forever", "--fast-list"
+        ["gclone", "move", f"GC:{s1}", f"GC:{d1}", "--transfers", "50", "--tpslimit-burst", "50" "--checkers", "10", "-vP", "--stats-one-line", "--stats=15s", "--ignore-existing", "--drive-server-side-across-configs", "--drive-chunk-size", "128M", "--drive-acknowledge-abuse", "--drive-keep-revision-forever", "--fast-list"]
     )
     await proc.wait()
     await ctx.send("**File Transfers Completed** --- https://drive.google.com/drive/folders/{}".format(destination))
@@ -258,7 +260,7 @@ async def sync(ctx, source, destination):
         "***CloneCord is syncing... it should be done syncing in a couple of minutes!***"
     )
     proc = await asyncio.create_subprocess_exec(
-        "gclone", "sync", f"GC:{s1}", f"GC:{d1}", "--transfers", "50", "--tpslimit-burst", "50", "--checkers", "10", "-vP", "--stats-one-line", "--stats=15s", "--drive-server-side-across-configs", "--drive-chunk-size", "128M", "--drive-acknowledge-abuse", "--drive-keep-revision-forever", "--fast-list"
+        ["gclone", "sync", f"GC:{s1}", f"GC:{d1}", "--transfers", "50", "--tpslimit-burst", "50", "--checkers", "10", "-vP", "--stats-one-line", "--stats=15s", "--drive-server-side-across-configs", "--drive-chunk-size", "128M", "--drive-acknowledge-abuse", "--drive-keep-revision-forever", "--fast-list"]
     )
     await proc.wait()
     await ctx.send("**Sync Completed** --- https://drive.google.com/drive/folders/{}".format(destination))
@@ -274,7 +276,7 @@ async def emptdir(ctx, source):
         "*CloneCord is emptying the directory... it should be done in around 5 minutes if your directory is big!* **If you are worried about losing your deleted files forever, don't worry! You can recover stuff from your trash can!**"
     )
     proc = await asyncio.create_subprocess_exec(
-        "gclone", "delete", f"GC:{s1}", "-vP", "--drive-trashed-only", "--fast-list"
+        ["gclone", "delete", f"GC:{s1}", "-vP", "--drive-trashed-only", "--fast-list"]
     )
     await proc.wait()
     await ctx.send("**Emptying Directory Completed** --- https://drive.google.com/drive/folders/{}".format(source))
@@ -290,7 +292,7 @@ async def md5(ctx, source):
         "***Producing MD5 Hash, please wait...***"
     )
     proc = await asyncio.create_subprocess_exec(
-        "gclone", "md5sum", f"GC:{s1}", "--fast-list"
+        ["gclone", "md5sum", f"GC:{s1}", "--fast-list"]
     )
     await proc.wait()
     await ctx.send("**Finished Producing MD5** --- https://drive.google.com/drive/folders/{}".format(source))
@@ -306,7 +308,7 @@ async def rmdi(ctx, source):
         "*Removing empty directories... this should take a few seconds or more.* **If you want to recover your empty folders, don't worry, they will be in your trash can!**"
     )
     proc = await asyncio.create_subprocess_exec(
-        "gclone", "rmdirs" f"GC:{s1}", "-v", "--stats-one-line", "--stats=15s", "--fast-list"
+        ["gclone", "rmdirs" f"GC:{s1}", "-v", "--stats-one-line", "--stats=15s", "--fast-list"]
     )
     await proc.wait()
     await ctx.send("**Finished removing empty dirs** --- https://drive.google.com/drive/folders/{}".format(source))
@@ -322,7 +324,7 @@ async def dedupe(ctx, source):
         "*Deduplicating files... this should take a few seconds or more.* **If you want to recover your files / folders, don't worry, they will be in your trash can!**"
     )
     proc = await asyncio.create_subprocess_exec(
-        "gclone", "dedupe", "--dedupe-mode", "newest", f"GC:{s1}", "-v", "--fast-list"
+        ["gclone", "dedupe", "--dedupe-mode", "newest", f"GC:{s1}", "-v", "--fast-list"]
     )
     await proc.wait()
     await ctx.send("**Finished Dedupe** --- https://drive.google.com/drive/folders/{}".format(source))
@@ -338,7 +340,7 @@ async def mkdir(ctx, source):
         "***Creating directory...***"
     )
     proc = await asyncio.create_subprocess_exec(
-        "gclone", "mkdir", f"GC:{s1}"
+        ["gclone", "mkdir", f"GC:{s1}"]
     )
     await proc.wait()
     await ctx.send("**Created directory** --- https://drive.google.com/drive/folders/{}".format(source))
@@ -354,7 +356,7 @@ async def purge(ctx, source):
         "***Purging directory...***"
     )
     proc = await asyncio.create_subprocess_exec(
-        "gclone", "purge", f"GC:{s1}", "-vP", "--stats-one-line", "--stats=15s", "--fast-list"
+        ["gclone", "purge", f"GC:{s1}", "-vP", "--stats-one-line", "--stats=15s", "--fast-list"]
     )
     await proc.wait()
     await ctx.send("**Purged Directory** --- https://drive.google.com/drive/folders/{}".format(source))
