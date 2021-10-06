@@ -31,6 +31,7 @@ import os
 import random
 import struct
 import time
+from dotenv import load_dotenv
 from time import sleep
 from typing import Optional
 import asyncio
@@ -42,16 +43,10 @@ from discord.utils import get
 os.system('title CloneCord Discord Bot V6 BETA by REKULOUS. Original code by KushTheApplusser')
 os.system('color 0B')
 
+load_dotenv()
 
-# Get bot config.json so the code has access to your bot account.
-if not os.path.isfile("config.json"):
-    sys.exit("Your Discord bot 'config.json' was not found! Please add it and try again. Make sure you CD into the directory of this Python script before you run it and check config.json is in there as well!\n\nYour bot config needs to have a prefix and a token for your bot to function and run. Make sure you also have edited your rclone.conf file in Notepad or a Text Editor to get your Service Accounts!")
-else:
-    with open("config.json", "r") as config:
-        data = json.load(config)
-        token = data["token"]
-        prefix = data["prefix"]
-
+TOKEN = os.getenv("TOKEN")
+PREFIX = os.getenv("PREFIX")
 
 # Some sweet bot logging. I don't think it logs GClone commands and stuff like that
 logger = logging.getLogger("discord")
@@ -398,4 +393,4 @@ async def ping(ctx: commands.Context):
     print("||=- - - - - - - - > Pinged! < - - - - - - - -=||")
 
 # Start the bot, DO NOT TOUCH!
-bot.run(token)
+bot.run(TOKEN)
