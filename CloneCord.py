@@ -44,10 +44,14 @@ os.system(
     'title CloneCord Discord Bot V6 BETA by REKULOUS. Original code by KushTheApplusser')
 os.system('color 0B')
 
-load_dotenv()
+# Fetch .env configuration. DO NOT TOUCH
+if not os.path.isfile(".env"):
+    sys.exit("Your Discord bot '.env' was not found! Please add it and try again. Make sure you CD into the directory of this Python script before you run it and check .env is in there as well!\n\nYour bot config needs to have a prefix and a token for your bot to function and run. Make sure you also have edited your rclone.conf file in Notepad or a Text Editor to get your Service Accounts!")
+else:
+    load_dotenv()
 
-TOKEN = os.getenv("TOKEN")
-PREFIX = os.getenv("PREFIX")
+    TOKEN = os.getenv("TOKEN")
+    PREFIX = os.getenv("PREFIX")
 
 # Some sweet bot logging. I don't think it logs GClone commands and stuff like that
 logger = logging.getLogger("discord")
