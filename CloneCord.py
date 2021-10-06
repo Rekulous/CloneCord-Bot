@@ -31,6 +31,7 @@ import os
 import random
 import struct
 import time
+from dotenv import load_dotenv
 from time import sleep
 from typing import Optional
 import asyncio
@@ -39,38 +40,36 @@ from discord.ext import commands
 from discord.utils import get
 
 # Change CMD Text Color to Cyan, and Change CMD / Python Window Title Name (ONLY FOR WINDOWS)
-os.system('title CloneCord Discord Bot V6 BETA by REKULOUS. Original code by KushTheApplusser')
+os.system(
+    'title CloneCord Discord Bot V6 BETA by REKULOUS. Original code by KushTheApplusser')
 os.system('color 0B')
 
+load_dotenv()
 
-# Get bot config.json so the code has access to your bot account.
-if not os.path.isfile("config.json"):
-    sys.exit("Your Discord bot 'config.json' was not found! Please add it and try again. Make sure you CD into the directory of this Python script before you run it and check config.json is in there as well!\n\nYour bot config needs to have a prefix and a token for your bot to function and run. Make sure you also have edited your rclone.conf file in Notepad or a Text Editor to get your Service Accounts!")
-else:
-    with open("config.json", "r") as config:
-        data = json.load(config)
-        token = data["token"]
-        prefix = data["prefix"]
-
+TOKEN = os.getenv("TOKEN")
+PREFIX = os.getenv("PREFIX")
 
 # Some sweet bot logging. I don't think it logs GClone commands and stuff like that
 logger = logging.getLogger("discord")
 logger.setLevel(logging.DEBUG)
 handler = logging.FileHandler(filename="bot.log", encoding="utf-8", mode="w")
-handler.setFormatter(logging.Formatter("%(asctime)s:%(levelname)s:%(name)s: %(message)s"))
+handler.setFormatter(logging.Formatter(
+    "%(asctime)s:%(levelname)s:%(name)s: %(message)s"))
 logger.addHandler(handler)
 
 # Bot prefix set to the one in your config.json file. Don't modify or touch this!
-bot = commands.Bot(command_prefix=prefix)
+bot = commands.Bot(command_prefix=PREFIX)
 
 # Print this if the bot is ready and start bot status + give GClone details.
+
+
 @bot.event
 async def on_ready():
     print('<===============================|| Running CloneCord Version 5 BETA! ||===============================>')
     print('Connected to bot: {}'.format(bot.user.name))
     print('Bot ID: {}'.format(bot.user.id))
     print('CloneCord is Ready!')
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=prefix + "help to get help! CloneCord V6 BETA"))
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=PREFIX + "help to get help! CloneCord V6 BETA"))
     print('CloneCord Status Ready!')
     print('Python Version: {}'.format(platform.python_version()))
     print('Discord.py API version: {}'.format(discord.__version__))
@@ -88,7 +87,8 @@ async def on_ready():
         ["gclone", "listremotes"]
     )
     print("----------------------------------------------------------------------------------------------------------------------")
-    print("==================================================================[ALL READY!!!]==================================================================")
+    print(
+        "==================================================================[ALL READY!!!]==================================================================")
 
 
 # Block commands in bot DMs for security. If you are using the bot for your own private use and its not in a server, you can remove the bot check.
@@ -100,6 +100,8 @@ async def globally_block_dms(ctx):
 # Remove default Discord.py help message and replace it with embed one. Send "<your prefix>help <command>" to get info on how to use a command and get GDrive IDs.
 # If you want, you can change the help message to what you want it to explain / say!
 bot.remove_command("help")
+
+
 @bot.command()
 async def help(ctx, command: Optional[str]):
     list_of_commands = [
@@ -147,11 +149,10 @@ async def help(ctx, command: Optional[str]):
 
     helpEmbed = discord.Embed(
         title="Here are the available bot commands:",
-        description="**CloneCord is a Discord bot made to run GClone, an RClone mod for Multiple Service Account support in Discord.**\n\n*Note: All commands below can be ran more than once at the same time, but there is a cooldown, so you don't overload / break the bot!*"
-        ,color=0x87CEEB)
+        description="**CloneCord is a Discord bot made to run GClone, an RClone mod for Multiple Service Account support in Discord.**\n\n*Note: All commands below can be ran more than once at the same time, but there is a cooldown, so you don't overload / break the bot!*", color=0x87CEEB)
     helpEmbed.set_author(
         name="CloneCord V6 BETA",
-        icon_url="https://1.bp.blogspot.com/-M5PLcSana6M/XgBHF7jUjiI/AAAAAAAAUzs/S24qhuijluwKlzIOnc2gntoI-U83ZsrJACLcBGAsYHQ/s1600/rclone_logo.png")
+        icon_url="https://www.debian-fr.org/uploads/default/original/2X/3/328f860878d4acb13d550a2b12505d181f181713.png")
     helpEmbed.set_footer(
         text="Bot originally created by Kush The A++er#2976. Revamped version by REKULOUS#5580. Thanks to Pratyush.#6969 and Razorback#4637 for the help!",
         icon_url="https://cdn.discordapp.com/emojis/754736642761424986.png")
@@ -193,7 +194,7 @@ async def help(ctx, command: Optional[str]):
     )
     helpEmbed.add_field(
         name='purge',
-        value="Delete a directory and all its contents" 
+        value="Delete a directory and all its contents"
     )
     helpEmbed.add_field(
         name='ping',
@@ -202,13 +203,15 @@ async def help(ctx, command: Optional[str]):
     if command:
         for com in list_of_commands:
             if com["command"] == command:
-                embed1 = discord.Embed(title=command, description=f"?{command} {com['value']}",color=0x87CEEB)
-                embed1.set_author(name="CloneCord V6 BETA",icon_url="https://1.bp.blogspot.com/-M5PLcSana6M/XgBHF7jUjiI/AAAAAAAAUzs/S24qhuijluwKlzIOnc2gntoI-U83ZsrJACLcBGAsYHQ/s1600/rclone_logo.png")
-                embed1.set_footer(text="Source and Destination IDs can be found by finding the jumbled up letters & numbers at the end of a GDrive folder / file URL. Example: 1Zsh8DctvvWZzJgiEI_sqxVoxvKv9VsYp",icon_url="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Google_Drive_logo.png/1200px-Google_Drive_logo.png")
+                embed1 = discord.Embed(
+                    title=command, description=f"?{command} {com['value']}", color=0x87CEEB)
+                embed1.set_author(
+                    name="CloneCord V6 BETA", icon_url="https://1.bp.blogspot.com/-M5PLcSana6M/XgBHF7jUjiI/AAAAAAAAUzs/S24qhuijluwKlzIOnc2gntoI-U83ZsrJACLcBGAsYHQ/s1600/rclone_logo.png")
+                embed1.set_footer(text="Source and Destination IDs can be found by finding the jumbled up letters & numbers at the end of a GDrive folder / file URL. Example: 1Zsh8DctvvWZzJgiEI_sqxVoxvKv9VsYp",
+                                  icon_url="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Google_Drive_logo.png/1200px-Google_Drive_logo.png")
                 await ctx.send(embed=embed1)
     else:
         await ctx.send(embed=helpEmbed)
-
 
 
 # = = = = { GCLONE BOT COMMANDS } = = = =
@@ -230,7 +233,8 @@ async def clone(ctx, source, destination):
     )
     await proc.wait()
     await ctx.send("**Cloning Complete** --- https://drive.google.com/drive/folders/{}".format(destination))
-    print("===========================================================================[CLONING COMPLETE]===========================================================================")
+    print(
+        "===========================================================================[CLONING COMPLETE]===========================================================================")
 
 
 # GClone Folder / File Move Command
@@ -247,7 +251,8 @@ async def move(ctx, source, destination):
     )
     await proc.wait()
     await ctx.send("**File Transfers Completed** --- https://drive.google.com/drive/folders/{}".format(destination))
-    print("===========================================================================[FILE TRANSFERS COMPLETED]===========================================================================")
+    print(
+        "===========================================================================[FILE TRANSFERS COMPLETED]===========================================================================")
 
 
 # GClone Sync Command
@@ -264,7 +269,8 @@ async def sync(ctx, source, destination):
     )
     await proc.wait()
     await ctx.send("**Sync Completed** --- https://drive.google.com/drive/folders/{}".format(destination))
-    print("===========================================================================[SYNC COMPLETED]===========================================================================")
+    print(
+        "===========================================================================[SYNC COMPLETED]===========================================================================")
 
 
 # GClone Empty / Clear Directory Command
@@ -280,7 +286,8 @@ async def emptdir(ctx, source):
     )
     await proc.wait()
     await ctx.send("**Emptying Directory Completed** --- https://drive.google.com/drive/folders/{}".format(source))
-    print("===========================================================================[FINISHED EMPTYING DIRECTORY]===========================================================================")
+    print(
+        "===========================================================================[FINISHED EMPTYING DIRECTORY]===========================================================================")
 
 
 # GClone md5sum file creation for all the objects in a directory
@@ -296,7 +303,8 @@ async def md5(ctx, source):
     )
     await proc.wait()
     await ctx.send("**Finished Producing MD5** --- https://drive.google.com/drive/folders/{}".format(source))
-    print("===========================================================================[FINISHED PRODUCING MD5]===========================================================================")
+    print(
+        "===========================================================================[FINISHED PRODUCING MD5]===========================================================================")
 
 
 # GClone Remove Empty Directories
@@ -312,7 +320,8 @@ async def rmdi(ctx, source):
     )
     await proc.wait()
     await ctx.send("**Finished removing empty dirs** --- https://drive.google.com/drive/folders/{}".format(source))
-    print("===========================================================================[FINISHED REMOVING EMPTY DIRECTORIES]===========================================================================")
+    print(
+        "===========================================================================[FINISHED REMOVING EMPTY DIRECTORIES]===========================================================================")
 
 
 # GClone Dedupe Files / Folders
@@ -328,7 +337,8 @@ async def dedupe(ctx, source):
     )
     await proc.wait()
     await ctx.send("**Finished Dedupe** --- https://drive.google.com/drive/folders/{}".format(source))
-    print("===========================================================================[FINISHED DEDUPING FILES]===========================================================================")
+    print(
+        "===========================================================================[FINISHED DEDUPING FILES]===========================================================================")
 
 
 # GClone Create Directory
@@ -344,7 +354,8 @@ async def mkdir(ctx, source):
     )
     await proc.wait()
     await ctx.send("**Created directory** --- https://drive.google.com/drive/folders/{}".format(source))
-    print("===========================================================================[CREATED DIRECTORY]===========================================================================")
+    print(
+        "===========================================================================[CREATED DIRECTORY]===========================================================================")
 
 
 # GClone Purge Folders
@@ -360,7 +371,8 @@ async def purge(ctx, source):
     )
     await proc.wait()
     await ctx.send("**Purged Directory** --- https://drive.google.com/drive/folders/{}".format(source))
-    print("===========================================================================[PURGED DIRECTORY]===========================================================================")
+    print(
+        "===========================================================================[PURGED DIRECTORY]===========================================================================")
 
 
 # CloneCord Error Messages to make the bot have a command cooldown and send error messages about invalid commands / arguments
@@ -384,7 +396,6 @@ async def error(ctx, error):
         await ctx.send("**There is an error in your command:** `{}`".format(error) + "\n**Use `?help` or `?help <command>` to get help on commands!**")
 
 
-
 # = = = = {EXTRA COMMANDS / BOT UTILITY} = = = =
 
 # Ping Command to get the bot's current websocket and API latency
@@ -393,9 +404,9 @@ async def ping(ctx: commands.Context):
     start_time = time.time()
     message = await ctx.send("Pinging...")
     end_time = time.time()
-    
+
     await message.edit(content=f":ping_pong:    *Pong!*    **`{round(bot.latency * 1000)}ms`**    :ping_pong:\n:ping_pong:    **API Ping:** **`{round((end_time - start_time) * 1000)}ms`**  :ping_pong:")
     print("||=- - - - - - - - > Pinged! < - - - - - - - -=||")
 
 # Start the bot, DO NOT TOUCH!
-bot.run(token)
+bot.run(TOKEN)

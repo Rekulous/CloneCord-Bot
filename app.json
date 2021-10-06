@@ -4,10 +4,22 @@
 	"repository": "https://github.com/Rekulous/CloneCord-Bot",
 	"website": "https://github.com/Rekulous/CloneCord-Bot",
 	"stack": "container",
+	"env": {
+    "TOKEN": {
+      "required": true,
+      "value": "Discord token goes here. Replace this text with token."
+    },
+    "PREFIX": {
+      "required": true,
+	  "value": "Prefix goes here. Replace this text with prefix of your bot."
+    },
 	"formation": {
 		"worker": {
 			"quantity": 1,
 			"size": "free"
+
 		}
 	}
 }
+}
+
