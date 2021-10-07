@@ -65,8 +65,6 @@ logger.addHandler(handler)
 bot = commands.Bot(command_prefix=PREFIX)
 
 # Print this if the bot is ready and start bot status + give GClone details.
-
-
 @bot.event
 async def on_ready():
     print('<===============================|| Running CloneCord Version 5 BETA! ||===============================>')
