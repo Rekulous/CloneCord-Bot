@@ -6,4 +6,4 @@ COPY . .
 COPY gclone /usr/local/bin/gclone
 RUN chmod 0755 /usr/local/bin/gclone
 RUN chmod +x CloneCord.py
-CMD [ "python3", "CloneCord.py"]
+CMD [ "python3", "CloneCord-Mac-Linux.py"]
