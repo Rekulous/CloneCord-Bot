@@ -1,5 +1,12 @@
 # CloneCord-Bot
 
+```ATTENTION
+
+This repo is under hiatus and won't have any updates for a month or two due to my inactivity and IRL stuff I'm dealing with rn.
+
+THE HEROKU BUILD IS BROKEN!!! Don't use it! Sorry for the inconveniences
+```
+
 A Discord.py bot for Running GClone, an RClone mod that allows multiple Google Service Account configuration. Inspired by Telegram MirrorBots and CloneBot.
 
 Thanks to KushTheAppluser, TaskyLizard, Cerda, and Razorback for helping me develop the bot!
