@@ -1,6 +1,7 @@
 # CloneCord-Bot
 
-```ATTENTION
+```
+ATTENTION
 
 This repo is under hiatus and won't have any updates for a month or two due to my inactivity and IRL stuff I'm dealing with rn.
 
