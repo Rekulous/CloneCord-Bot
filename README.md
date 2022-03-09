@@ -3,9 +3,7 @@
 ```
 ATTENTION
 
-This repo is under hiatus and won't have any updates for a month or two due to my inactivity and IRL stuff I'm dealing with rn.
-
-THE HEROKU BUILD IS BROKEN!!! Don't use it! Sorry for the inconveniences
+This repo is under hiatus and won't have any updates for some time. I'm thinking of rewriting and updating it at the moment, but not now. Sorry!
 ```
 
 A Discord.py bot for Running GClone, an RClone mod that allows multiple Google Service Account configuration. Inspired by Telegram MirrorBots and CloneBot.
@@ -62,6 +60,8 @@ Before you get started, you need [Python](https://python.org) 3.7 or later to ru
 ## Heroku
 
 **Deploy to Heroku:**
+
+**YOU REQUIRE INSTALLING A GCLONE BUILDPACK TOO!!!**
 
  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Rekulous/CloneCord-Bot/blob/main)
 
