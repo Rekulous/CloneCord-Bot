@@ -1,3 +1,5 @@
-discord
+aiohttp[speedups]
+git+https://github.com/Rapptz/discord.py
+
 asyncio
 python-dotenv
