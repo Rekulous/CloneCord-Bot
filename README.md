@@ -23,6 +23,8 @@ Below are the features the bot currently has of now. New commands and features w
 
 ## Prerequisites
 
+Skip to the Heroku section if you are going to install using that.
+
 Before you get started, you need [Python](https://python.org) 3.7 or later to run this script. Below are some extra things you need to download / install too:
 
 - **[GClone](https://github.com/donwa/gclone)** - Run the shell / batch script if you are on Linux to install, or add the `gclone.exe` file to your system PATH variables if you are on Windows. Putting the script in the same directory as GClone in Windows will work as well. If you are on MacOS, download the Darwin build of GClone.
@@ -61,4 +63,4 @@ Before you get started, you need [Python](https://python.org) 3.7 or later to ru
 
 ## Repl.it
 
-You are not able to run this bot on Replit because it cannot install or run GClone in the Shell or Python. Instead, use Heroku or run it on your system.
+Repl.it is not supported.
