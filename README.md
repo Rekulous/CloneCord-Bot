@@ -1,14 +1,8 @@
-# CloneCord-Bot
+# Clonecord
 
-```
-ATTENTION
-
-This repo is under hiatus and won't have any updates for some time. I'm thinking of rewriting and updating it at the moment, but not now. Sorry!
-```
 
 A Discord.py bot for Running GClone, an RClone mod that allows multiple Google Service Account configuration. Inspired by Telegram MirrorBots and CloneBot.
 
-Thanks to KushTheAppluser, TaskyLizard, Cerda, and Razorback for helping me develop the bot!
 
 Original bot and code made by KushTheAppluser / BlackBeard. [GClone](https://github.com/donwa/gclone) created by Donwa. [GClone Linux](https://github.com/AndreVuillemot160/gclone) made by Cerda
 
@@ -28,6 +22,8 @@ Below are the features the bot currently has of now. New commands and features w
 - **Ping** - Get the bot's current websocket and API latency
 
 ## Prerequisites
+
+Skip to the Heroku section if you are going to install using that.
 
 Before you get started, you need [Python](https://python.org) 3.7 or later to run this script. Below are some extra things you need to download / install too:
 
@@ -67,4 +63,4 @@ Before you get started, you need [Python](https://python.org) 3.7 or later to ru
 
 ## Repl.it
 
-You are not able to run this bot on Replit because it cannot install or run GClone in the Shell or Python. Instead, use Heroku or run it on your system.
+Repl.it is not supported.
