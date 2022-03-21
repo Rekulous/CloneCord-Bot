@@ -1,14 +1,8 @@
-# CloneCord-Bot
+# Clonecord
 
-```
-ATTENTION
-
-This repo is under hiatus and won't have any updates for some time. I'm thinking of rewriting and updating it at the moment, but not now. Sorry!
-```
 
 A Discord.py bot for Running GClone, an RClone mod that allows multiple Google Service Account configuration. Inspired by Telegram MirrorBots and CloneBot.
 
-Thanks to KushTheAppluser, TaskyLizard, Cerda, and Razorback for helping me develop the bot!
 
 Original bot and code made by KushTheAppluser / BlackBeard. [GClone](https://github.com/donwa/gclone) created by Donwa. [GClone Linux](https://github.com/AndreVuillemot160/gclone) made by Cerda
 

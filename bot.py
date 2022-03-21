@@ -7,19 +7,9 @@
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU General Public License for more details.
-
+#
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-# ----------------------------------------------------------------------------------------------------------------------
-
-# CloneCord Bot V6 BETA by REKULOUS with help from taskylizard & Razorback! GClone made by Donwa on GitHub. Original Discord "GClone-Bot" by KushTheApplusser!
-
-# Bot tested by MineRocker, Saaz, REKULOUS, and KushTheApplusser. Inspired by Telegram GClone, GDrive, and Mirror Bots.
-# Also inspired by RoshanConnor and Tommmmyums GClone Batch Script for Windows.
-# Thank you to all the testers, devs, and all the people over at BIOHAZARD, FREEMEDIAHECKYEAH, The MegaDrive! Thank you to the users of this bot too!
-
-# If you want to help with the development of this bot, you can fork it on GitHub, edit the code you think needs work / add a feature, and create a pull request! Doing this helps me a lot!
 
 import asyncio
 import logging
@@ -33,13 +23,6 @@ import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 
-# Change CMD Text Color to Cyan, and Change CMD / Python Window Title Name
-os.system(
-    "title CloneCord Discord Bot V6 BETA by REKULOUS. Original code by KushTheApplusser"
-)
-os.system("color 0B")
-
-# Fetch .env configuration. DO NOT TOUCH
 if not os.path.isfile(".env"):
     sys.exit(
         "Your Discord bot '.env' was not found! Please add it and try again. Make sure you CD into the directory of this Python script before you run it and check .env is in there as well!\n\nYour bot config needs to have a prefix and a token for your bot to function and run. Make sure you also have edited your rclone.conf file in Notepad or a Text Editor to get your Service Accounts!"
@@ -50,7 +33,20 @@ else:
     TOKEN = os.getenv("TOKEN")
     PREFIX = os.getenv("PREFIX")
 
-# Some sweet bot logging. I don't think it logs GClone commands and stuff like that
+class Bot(commands.Bot):
+    def __init__(self, **kwargs):
+        super().__init__(command_prefix=os.getenv(PREFIX), **kwargs) # type: ignore
+
+    async def setup_hook(self) -> None:
+        pass
+
+    async def on_ready(self) -> None:
+        print(f"Logged in as {self.user}")
+
+
+bot = Bot()
+
+
 logger = logging.getLogger("discord")
 logger.setLevel(logging.DEBUG)
 handler = logging.FileHandler(filename="bot.log", encoding="utf-8", mode="w")
@@ -59,15 +55,13 @@ handler.setFormatter(
 )
 logger.addHandler(handler)
 
+
+
 # Bot prefix set to the one in your config.json file. Don't modify or touch this!
-bot = commands.Bot(command_prefix=PREFIX)
 
 # Print this if the bot is ready and start bot status + give GClone details.
 @bot.event
 async def on_ready():
-    print(
-        "<===============================|| Running CloneCord Version 5 BETA! ||===============================>"
-    )
     print("Connected to bot: {}".format(bot.user.name))
     print("Bot ID: {}".format(bot.user.id))
     print("CloneCord is Ready!")
@@ -289,31 +283,6 @@ async def purge(ctx, source):
         )
     )
 
-
-# CloneCord Error Messages to make the bot have a command cooldown and send error messages about invalid commands / arguments
-@clone.error
-@move.error
-@sync.error
-@emptdir.error
-@md5.error
-@rmdi.error
-@dedupe.error
-@mkdir.error
-@purge.error
-# All commands by default have a 140 Second Cooldown. If you want, you can remove the code before "else:" to remove cooldowns. Don't remove @<command>.error stuff!
-# Not recommended to remove this if you are using this bot in a server with other people than you though.
-# Be sure to remove the @commands.cooldown(1, 140, commands.BucketType.user) stuff too in the code for commands if you want to remove cooldowns.
-async def error(ctx, error):
-    if isinstance(error, commands.CommandOnCooldown):
-        await ctx.send(error)
-        return
-    else:
-        await ctx.send(
-            "**There is an error in your command:** `{}`".format(error)
-            + "\n**Use `?help` or `?help <command>` to get help on commands!**"
-        )
-
-
 # = = = = {EXTRA COMMANDS / BOT UTILITY} = = = =
 
 # Ping Command to get the bot's current websocket and API latency
@@ -324,9 +293,9 @@ async def ping(ctx: commands.Context):
     end_time = time.time()
 
     await message.edit(
-        content=f":ping_pong:    *Pong!*    **`{round(bot.latency * 1000)}ms`**    :ping_pong:\n:ping_pong:    **API Ping:** **`{round((end_time - start_time) * 1000)}ms`**  :ping_pong:"
+        content=f"*Pong!*\
+                **`{round(bot.latency * 1000)}ms`**\
+                **API Ping:** **`{round((end_time - start_time) * 1000)}ms`**"
     )
 
 
-# Start the bot, DO NOT TOUCH!
-bot.run(TOKEN, reconnect=True)
