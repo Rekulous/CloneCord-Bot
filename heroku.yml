@@ -1,7 +1,5 @@
 build:
   docker:
     worker: Dockerfile
-release:
-  image: worker
-  command:
-    - python3 ./CloneCord-Mac-Linux.py
+run:
+  worker: python3 ./CloneCord-Mac-Linux.py
